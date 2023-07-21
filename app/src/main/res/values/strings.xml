@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DrawAndWalk</string>
+
+    <string name="no_name_error">Please name your farm</string>
+    <string name="farm_exist_error">Farm name already exists</string>
+    <string name="fourcoodreqd">Atleast 4 coordinate points are required to save the Farm coordinates!</string>
+
+    <string name="totalpointsadded">Total points added: </string>
+    <string name="farmareatoolarge">Farm Area is too large!!</string>
+    <string name="farmsizelessthan">Please add farm of size less than 100 Hectare.</string>
+    <string name="selectedarea">Selected Area : </string>
+    <string name="pleasewait">Please Wait...</string>
+    <string name="gettingaccurateloc">Getting Accurate Location...</string>
+    <string name="youraccuracyis"> Your Accuracy is </string>
+
+    <string name="hectare">Hectare</string>
+
+
+</resources>

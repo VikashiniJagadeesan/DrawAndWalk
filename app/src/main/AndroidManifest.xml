@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation,ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DrawAndWalk"
+        tools:targetApi="31">
+        <activity
+            android:name=".EditMapBoundary"
+            android:exported="false" />
+        <activity
+            android:name=".Walk"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC3GJiWGLSyAXqWUfmMiNMITwQtROTxLZw" />
+
+        <activity
+            android:name=".Draw"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <service
+            android:name="com.example.drawandwalk.uiSupport.GoogleLocationService"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="true" />
+        <service
+            android:name="com.example.GoogleLocationService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="com.example.drawandwalk.uiSupport.GoogleLocationService"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="true" />
+
+
+        <receiver
+            android:name="com.example.drawandwalk.Walk"
+            android:stopWithTask="true"
+            tools:ignore="Instantiatable" />
+    </application>
+
+</manifest>

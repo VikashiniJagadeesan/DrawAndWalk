@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Draw">
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:text="back">
+
+    </Button>
+
+    <fragment
+
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="ForLanguage"
+        tools:context=".MapsActivity"
+        tools:ignore="MissingClass">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/searchcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:visibility="gone"
+            app:cardCornerRadius="5dp">
+
+            <fragment
+                android:id="@+id/autocomplete_fragment"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#cc000000"
+            android:paddingLeft="10dp"
+            android:paddingTop="2dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:text="noteundo"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:visibility="gone">
+
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="30dp">
+
+            <RelativeLayout
+                android:id="@+id/undorl"
+                android:layout_width="65dp"
+                android:layout_height="65dp">
+
+                <ImageButton
+                    android:id="@+id/undoimg"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:elevation="0dp"
+                    android:src="@drawable/undo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="Undo Mark"
+                    android:textColor="@android:color/black"
+                    android:textSize="10dp">
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/currentrl"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_below="@+id/undorl">
+
+                <ImageButton
+                    android:id="@+id/curr_location"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:elevation="0dp"
+                    android:src="@android:drawable/ic_menu_mylocation" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5sp"
+                    android:gravity="center"
+                    android:text="My Location"
+                    android:textColor="@android:color/black"
+                    android:textSize="10dp">
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/clearrl"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_below="@id/currentrl">
+
+                <ImageButton
+                    android:id="@+id/clear_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="0dp"
+                    android:src="@drawable/eraser2"
+                    android:tag="Clear" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5sp"
+                    android:gravity="center"
+                    android:text="Erase"
+                    android:textColor="@android:color/black"
+                    android:textSize="10dp">
+                </TextView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/clearrl"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="2dp">
+
+                <EditText
+                    android:id="@+id/lat"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:ems="10"
+                    android:hint="Latitude"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="4dp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/lng"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:ems="10"
+                    android:hint="Longitude"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="4dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="65dp"
+                    android:layout_height="65dp">
+
+                    <ImageButton
+                        android:id="@+id/get_lat_lng"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:elevation="0dp"
+                        android:src="@drawable/search2"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5sp"
+                        android:gravity="center"
+                        android:text="Search"
+                        android:textColor="@android:color/black"
+                        android:textSize="10dp">
+                    </TextView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/areaOfFarm1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="85dp"
+            android:background="#cc000000"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="Area of farm: 120.567 Acres">
+
+        </TextView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/farmDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_margin="40dp"
+                android:background="@drawable/spinner_bg"
+                android:elevation="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/classText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="details"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/nxt_btn"
+                    android:layout_width="249dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/ll1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginEnd="82dp"
+                    android:layout_marginBottom="25sp"
+                    android:background="@drawable/button_bg"
+                    android:text="next"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.295"
+                    tools:layout_editor_absoluteX="161dp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/farm_name"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="crop_type"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/farm_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/classText"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                    android:ems="10"
+                    android:hint="name"
+                    android:inputType="textPersonName"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rr3"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="0dp"
+                    android:text="sowingdate"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/rr3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/textView3"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:visibility="gone">
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/crop_type"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_alignParentStart="true"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:background="@drawable/spinner_bg"-->
+<!--                        android:entries="@array/crop_type" />-->
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_spinner_downarrow">
+
+                    </ImageView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rr4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/textView5"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/crop_agetxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/spinner_bg"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="selectdate"
+                        android:textColor="@android:color/black">
+                    </TextView>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/calendar1">
+
+                    </ImageView>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rr4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_weight="1"
+                            android:text="notyourfarm"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchfarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp">
+
+                        </com.google.android.material.switchmaterial.SwitchMaterial>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/farmernumtxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:ems="10"
+                        android:hint="farmerspnum"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColor="#000000"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_bg"
+            android:elevation="0dp"
+            android:padding="8dp"
+            android:shadowColor="#23FFFFFF"
+            android:text="next"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+    </fragment>
+
+</RelativeLayout>
